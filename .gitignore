@@ -1,0 +1,65 @@
+<<<<<<< HEAD
+# Ignore build outputs from performing a nix-build or `nix build` command
+result
+result-*
+
+# Ignore automatically generated direnv output
+.direnv
+=======
+# ----------------------------------------
+# Nix build & cache
+# ----------------------------------------
+result
+result-*
+*.drv
+*.qcow2
+*.vmdk
+*.iso
+*.img
+*.ova
+*.log
+
+# ----------------------------------------
+# Nix store links (flakes build symlinks)
+# ----------------------------------------
+/.nix-gcroots/
+/.nix-defexpr/
+/.nix-profile
+
+# ----------------------------------------
+# Secrets & sensitive configs
+# ----------------------------------------
+secrets/
+*.age
+*.enc
+*.key
+*.pem
+*.crt
+*.gpg
+*.asc
+
+# agenix or sops-nix secret files
+*.secrets.nix
+*.agekey
+*.sops.yaml
+
+# ----------------------------------------
+# Editor / Dev environment
+# ----------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*~
+.DS_Store
+Thumbs.db
+
+# ----------------------------------------
+# Nix-specific environments
+# ----------------------------------------
+.envrc
+.direnv/
+.env
+
+>>>>>>> 54d9a76 (add .gitignore)
