@@ -14,7 +14,6 @@ export BROWSER='firefox'
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export SUDO_PROMPT="Deploying root access for %u. Password pls: "
 export BAT_THEME="base16"
-export PATH=$PATH:/home/ezra/.spicetify
 
 # Add ~/.local/bin to path (Zsh native way)
 path=("$HOME/.local/bin" $path)
@@ -146,7 +145,12 @@ alias ls='eza --icons=always --color=always -a'
 alias ll='eza --icons=always --color=always -la'
 
 # ────────────────────────────────────────────────────────────────
+# Direnv Hook
+if command -v direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# ────────────────────────────────────────────────────────────────
 # Visual startup
 colorscript -r
 # ────────────────────────────────────────────────────────────────
-
