@@ -6,6 +6,7 @@
   # --------------------------------------------------------
   imports = [
     ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.home-manager
   ];
 
   # --------------------------------------------------------
@@ -15,7 +16,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "b43" ];
-  hardware.firmware = [ pkgs.b43Firmware_5_1_138 ];
+  hardware.enableRedistributableFirmware = true;
 
   # --------------------------------------------------------
   # Networking & Bluetooth
@@ -38,7 +39,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;
-    packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
   };
 
   # --------------------------------------------------------
@@ -66,7 +66,7 @@
     kitty
     vscode
     gnumake
-    nodejs_24
+    direnv
     inputs.kwin-effects-forceblur.packages.${pkgs.system}.default  # Wayland
     inputs.kwin-effects-forceblur.packages.${pkgs.system}.x11      # X11
   ];
@@ -77,6 +77,7 @@
   services.openssh.enable = true;
   services.openssh.settings.PermitRootLogin = "no";
   services.openssh.allowSFTP = true;
+  services.openssh.settings.PasswordAuthentication = false;
 
   #----------------------------------------------------------
   # Flatpak
@@ -87,7 +88,9 @@
   # Time & locale
   # --------------------------------------------------------
   time.timeZone = "America/Jamaica";
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_TIME = "en_GB.UTF-8"; # ISO-style dates
+  };
   
   # --------------------------------------------------------
   # Qt configuration
