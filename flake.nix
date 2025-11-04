@@ -1,5 +1,5 @@
 {
-  description = '' 🧊 Ezra’s NixOS & Home Manager configuration. '';
+  description = "🧊 Ezra’s NixOS & Home Manager configuration";
 
   # ------------------------------------------------------
   # Inputs
@@ -31,13 +31,7 @@
   # ------------------------------------------------------
   # Outputs
   # ------------------------------------------------------
-  outputs = {
-    self,
-    home-manager,
-    nixpkgs,
-    ...
-  } @ inputs: 
-
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
   let
     inherit (self) outputs;
 
@@ -50,15 +44,16 @@
       "x86_64-darwin"
     ];
 
-    # Helper: apply a function to all systems
+    # Helper: apply a function to all supported systems
     forAllSystems = nixpkgs.lib.genAttrs systems;
-
-  in {
-
+  in
+  {
     # ------------------------------------------------------
     # Packages
     # ------------------------------------------------------
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    packages = forAllSystems (system:
+      import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; }
+    );
 
     # ------------------------------------------------------
     # Overlays
@@ -79,16 +74,22 @@
     # Home Manager Configurations
     # ------------------------------------------------------
     homeConfigurations = {
-      "ezra" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      ezra = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs outputs; };
-        modules = [ 
+        modules = [
           ./home/ezra/ezra.nix
           inputs.spicetify-nix.homeManagerModules.default
         ];
       };
     };
+
+    # ------------------------------------------------------
+    # Dev Templates & Formatter (Optional)
+    # ------------------------------------------------------
+    templates = import ./dev-shells;
+    formatter = forAllSystems (system:
+      nixpkgs.legacyPackages.${system}.nixfmt-tree
+    );
   };
 }
-
-
