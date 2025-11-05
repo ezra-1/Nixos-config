@@ -14,7 +14,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     # ------------------ Better Blur -------------------
     kwin-effects-forceblur = {
       url = "github:taj-ny/kwin-effects-forceblur";
@@ -31,65 +31,67 @@
   # ------------------------------------------------------
   # Outputs
   # ------------------------------------------------------
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
-  let
-    inherit (self) outputs;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
 
-    # Supported systems (Linux + macOS)
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
+      # Supported systems (Linux + macOS)
+      systems = [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
 
-    # Helper: apply a function to all supported systems
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-  in
-  {
-    # ------------------------------------------------------
-    # Packages
-    # ------------------------------------------------------
-    packages = forAllSystems (system:
-      import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; }
-    );
+      # Helper: apply a function to all supported systems
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+    in
+    {
+      # ------------------------------------------------------
+      # Packages
+      # ------------------------------------------------------
+      packages = forAllSystems (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
 
-    # ------------------------------------------------------
-    # Overlays
-    # ------------------------------------------------------
-    overlays = import ./overlays { inherit inputs; };
+      # ------------------------------------------------------
+      # Overlays
+      # ------------------------------------------------------
+      overlays = import ./overlays { inherit inputs; };
 
-    # ------------------------------------------------------
-    # NixOS Configurations
-    # ------------------------------------------------------
-    nixosConfigurations = {
-      ezra = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs outputs; };
-        modules = [ ./hosts/ezra ];
+      # ------------------------------------------------------
+      # NixOS Configurations
+      # ------------------------------------------------------
+      nixosConfigurations = {
+        ezra = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/ezra ];
+        };
       };
-    };
 
-    # ------------------------------------------------------
-    # Home Manager Configurations
-    # ------------------------------------------------------
-    homeConfigurations = {
-      ezra = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = { inherit inputs outputs; };
-        modules = [
-          ./home/ezra/ezra.nix
-          inputs.spicetify-nix.homeManagerModules.default
-        ];
+      # ------------------------------------------------------
+      # Home Manager Configurations
+      # ------------------------------------------------------
+      homeConfigurations = {
+        ezra = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home/ezra/ezra.nix
+            inputs.spicetify-nix.homeManagerModules.default
+          ];
+        };
       };
-    };
 
-    # ------------------------------------------------------
-    # Dev Templates & Formatter (Optional)
-    # ------------------------------------------------------
-    templates = import ./dev-shells;
-    formatter = forAllSystems (system:
-      nixpkgs.legacyPackages.${system}.nixfmt-tree
-    );
-  };
+      # ------------------------------------------------------
+      # Dev Templates & Formatter (Optional)
+      # ------------------------------------------------------
+      templates = import ./dev-shells;
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
+    };
 }
