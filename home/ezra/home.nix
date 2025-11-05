@@ -1,4 +1,10 @@
-{ config, lib, pkgs, imports, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  imports,
+  ...
+}:
 
 {
   # --------------------------------------------------------
@@ -8,7 +14,9 @@
     # Add more modules here, e.g.:
     # ../../modules/system/gnome.nix
     # ../../modules/network.nix
-    ../../modules/programs/media/spicetify   
+    ../../modules/programs/cli
+    ../../modules/core/zsh
+    ../../modules/programs/media/spicetify
   ];
 
   # --------------------------------------------------------
@@ -73,7 +81,7 @@
       enable = true;
 
       # Git user info
-      settings.user.name  = "ezra";
+      settings.user.name = "ezra";
       settings.user.email = "ezralawrence02@gmail.com";
 
       # Default branch name for new repos
@@ -81,31 +89,12 @@
 
       # Git aliases
       settings.alias = {
-        co   = "checkout";
-        br   = "branch";
-        ci   = "commit";
-        st   = "status";
+        co = "checkout";
+        br = "branch";
+        ci = "commit";
+        st = "status";
         last = "log -1 HEAD";
       };
-    };
-
-    # ---------------- Bash ----------------
-    # Uncomment if you want Bash instead of Zsh
-    # bash = {
-    #   enable = true;
-    #   enableCompletion = true;
-    #   shellInit = ''
-    #     PS1="\[\e[1;32m\][\u@\h:\w]\$\[\e[0m\] "
-    #   '';
-    # };
-
-    # ---------------- Zsh ----------------
-    zsh = {
-      enable = true;
-       autosuggestion.enable = true;
-       syntaxHighlighting.enable = true;
-       historySubstringSearch.enable = true;
-       initContent = builtins.readFile ./zsh/zshrc;
     };
   };
 
