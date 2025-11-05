@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
@@ -7,8 +13,7 @@ in
   # ------------------------------------------------------
   # Allow unfree Spotify
   # ------------------------------------------------------
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    lib.hasPrefix "spotify" (lib.getName pkg);
+  nixpkgs.config.allowUnfreePredicate = pkg: lib.hasPrefix "spotify" (lib.getName pkg);
 
   # ------------------------------------------------------
   # Spicetify configuration
@@ -34,4 +39,3 @@ in
     ];
   };
 }
-
