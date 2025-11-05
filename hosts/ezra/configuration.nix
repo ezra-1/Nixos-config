@@ -16,6 +16,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "b43" ];
+  hardware.firmware = [ pkgs.b43Firmware_5_1_138 ];
   hardware.enableRedistributableFirmware = true;
 
   # --------------------------------------------------------
