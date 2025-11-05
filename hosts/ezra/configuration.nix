@@ -1,4 +1,11 @@
-{ config, pkgs, lib, inputs, outputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  outputs,
+  ...
+}:
 
 {
   # --------------------------------------------------------
@@ -6,7 +13,7 @@
   # --------------------------------------------------------
   imports = [
     ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   # --------------------------------------------------------
@@ -38,7 +45,10 @@
   # --------------------------------------------------------
   users.users.ezra = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -68,8 +78,8 @@
     vscode
     gnumake
     direnv
-    inputs.kwin-effects-forceblur.packages.${pkgs.system}.default  # Wayland
-    inputs.kwin-effects-forceblur.packages.${pkgs.system}.x11      # X11
+    inputs.kwin-effects-forceblur.packages.${pkgs.system}.default # Wayland
+    inputs.kwin-effects-forceblur.packages.${pkgs.system}.x11 # X11
   ];
 
   # --------------------------------------------------------
@@ -92,7 +102,7 @@
   i18n.extraLocaleSettings = {
     LC_TIME = "en_GB.UTF-8"; # ISO-style dates
   };
-  
+
   # --------------------------------------------------------
   # Qt configuration
   # --------------------------------------------------------
