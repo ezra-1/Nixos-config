@@ -17,6 +17,8 @@
     ../../modules/programs/cli
     ../../modules/core/zsh
     ../../modules/programs/media/spicetify
+    ../../modules/programs/media/discord
+    ../../modules/programs/editor/vscode
   ];
 
   # --------------------------------------------------------
