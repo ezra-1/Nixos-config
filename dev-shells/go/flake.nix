@@ -1,5 +1,5 @@
 {
-  description = "🐹 A Nix flake providing a reproducible Go 1.24 development environment";
+  description = "󰟓  A Nix flake providing a reproducible Go 1.24 development environment";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -49,7 +49,7 @@
 
             shellHook = ''
               echo ""
-              echo "🐹 Go ${toString goVersion} development environment ready!"
+              echo "󰟓 Go ${toString goVersion} development environment ready!"
               echo "----------------------------------------------"
               go version
               golangci-lint --version || true

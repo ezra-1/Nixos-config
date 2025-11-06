@@ -1,5 +1,5 @@
 {
-  description = "🧩 A Nix flake providing a reproducible Node.js development environment";
+  description = "  A Nix flake providing a reproducible Node.js development environment";
 
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
@@ -54,7 +54,7 @@
               yarn
             ];
             shellHook = ''
-              echo "Node.js development environment ready!"
+              echo "  Node.js development environment ready!"
               node --version
               yarn --version
             '';
