@@ -39,7 +39,7 @@
       PATH = "$HOME/.local/bin:$PATH";
     };
 
-    initExtra = ''
+    initContent = ''
       # ───────────────────────────────────────────────
       # Exit if not interactive
       [[ $- != *i* ]] && return
