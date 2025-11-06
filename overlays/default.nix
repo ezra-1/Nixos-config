@@ -1,17 +1,32 @@
 { inputs, ... }:
 {
-  # This one brings our custom packages from the 'pkgs' directory
-  additions = final: _prev: import ../pkgs { pkgs = final; };
+  # --------------------------------------------------------
+  # 🧩 additions — bring in custom packages from ../pkgs
+  # --------------------------------------------------------
+  additions = final: _prev:
+    import ../pkgs { pkgs = final; };
 
-  # This one contains whatever you want to overlay
-  # You can change versions, add patches, set compilation flags, anything really.
-  # https://nixos.wiki/wiki/Overlays
+  # --------------------------------------------------------
+  # 🔧 modifications — customize or patch existing packages
+  # --------------------------------------------------------
   modifications = final: prev: {
-    # example = prev.example.overrideAttrs (oldAttrs: rec {
-    # ...
-    # });
+    # 🖥️ Vesktop: disable system Vencord and enable middle-click scroll
+    vesktop = prev.vesktop.override {
+      withSystemVencord = false;
+      withMiddleClickScroll = true;
+    };
+
+    # 💬 Discord: enable Vencord, OpenASAR, and autoscroll
+    discord = prev.discord.override {
+      withVencord = true;
+      withOpenASAR = true;
+      enableAutoscroll = true;
+    };
   };
 
+  # --------------------------------------------------------
+  # 🧱 stable-packages — import stable nixpkgs channel
+  # --------------------------------------------------------
   stable-packages = final: _prev: {
     stable = import inputs.nixpkgs-stable {
       system = final.system;
