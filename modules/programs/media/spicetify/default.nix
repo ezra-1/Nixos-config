@@ -22,8 +22,8 @@ in
     enable = true;
 
     # Theme
-    theme = spicePkgs.themes.lucid;
-    colorScheme = "";
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = "mocha";
 
     # Extensions
     enabledExtensions = with spicePkgs.extensions; [
