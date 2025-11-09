@@ -39,6 +39,7 @@
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  programs.hyprland.enable = true;
 
   # --------------------------------------------------------
   # Users
@@ -75,11 +76,19 @@
     wget
     unzip
     kitty
-    vscode
     gnumake
     direnv
-    inputs.kwin-effects-forceblur.packages.${pkgs.system}.default # Wayland
-    inputs.kwin-effects-forceblur.packages.${pkgs.system}.x11 # X11
+    bibata-cursors
+
+    # KWin blur effect (Wayland + X11)
+    inputs.kwin-effects-forceblur.packages.${system}.default
+    inputs.kwin-effects-forceblur.packages.${system}.x11
+
+    # Catppuccin theming
+    (catppuccin-kde.override {
+      flavour = [ "mocha" ];
+      accents = [ "mauve" ];
+    })
   ];
 
   # --------------------------------------------------------
