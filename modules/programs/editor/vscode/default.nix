@@ -29,7 +29,6 @@
         catppuccin.catppuccin-vsc
         catppuccin.catppuccin-vsc-icons
         jnoortheen.nix-ide
-        pkief.material-icon-theme
         # asvetliakov.vscode-neovim
         # vscodevim.vim
         # tamasfe.even-better-toml
