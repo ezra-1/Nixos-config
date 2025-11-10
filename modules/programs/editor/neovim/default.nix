@@ -1,15 +1,15 @@
-{ inputs, host, pkgs, ... }:
+{ inputs, host, pkgs, lib, ... }:
 
 {
   # ------------------------------------------------------
   # 🧩 System Packages — Dependencies for Neovim
   # ------------------------------------------------------
   home.packages = with pkgs; [
-    gcc                # Compile Treesitter parsers
-    nodejs             # Required for LSPs & plugins
-    nil                # Nix LSP
-    nixfmt-tree        # Nix formatter
-    ripgrep            # Fuzzy finding (Telescope, etc.)
+    gcc          # Compile Treesitter parsers
+    nodejs       # Required for LSPs & plugins
+    nil          # Nix LSP
+    nixfmt-tree  # Nix formatter
+    ripgrep      # Fuzzy finding (Telescope, etc.)
   ];
 
   # ------------------------------------------------------
@@ -17,7 +17,7 @@
   # ------------------------------------------------------
   programs.neovim.enable = true;
 
-  # Use config from flake input (e.g., inputs.neovim = ./nvim)
+  # Link Neovim configuration from your flake input
   xdg.configFile."nvim".source = inputs.neovim;
 
   # ------------------------------------------------------
@@ -27,17 +27,24 @@
     name = "Neovim wrapper";
     genericName = "Text Editor";
     comment = "Edit text files";
-    exec = "${lib.getExe (lib.getAttr terminal pkgs)} --class 'nvim-wrapper' -e nvim %F";
+
+    # ✅ Fixed: removed invalid single quotes — .desktop spec does not allow them
+    exec = "${lib.getExe pkgs.kitty} --class nvim-wrapper -e nvim %F";
+
     icon = "nvim";
     mimeType = [
       "text/plain"
       "text/x-makefile"
     ];
+
+    # ✅ Add 'Utility' for better desktop-categorization compliance
     categories = [
+      "Utility"
       "Development"
       "TextEditor"
     ];
-    terminal = false; # Important: false since we’re calling the terminal manually
+
+    terminal = false; # False since we're launching via terminal binary directly
   };
 }
 
