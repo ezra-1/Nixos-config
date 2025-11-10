@@ -10,10 +10,11 @@
   # --------------------------------------------------------
   imports = [
     ../../modules/core/zsh
-    ../../modules/programs/cli
+    ../../modules/programs/cli/direnv
     ../../modules/programs/media/spicetify
     ../../modules/programs/media/discord
     ../../modules/programs/editor/vscode
+    ../../modules/programs/editor/neovim
     ../../modules/desktop/plasma6
     ../../modules/programs/browser/zen
   ];
@@ -37,7 +38,6 @@
     htop
     wget
     kitty
-    neovim
     fastfetch
     spicetify-cli
     dwt1-shell-color-scripts
