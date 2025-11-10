@@ -78,6 +78,22 @@
         "type": "github"
       }
     },
+    "neovim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760069759,
+        "narHash": "sha256-FA4N1e+bmadLj/825+Z/qvDTrh7li/SUikq2pcKsgYc=",
+        "owner": "ezra-1",
+        "repo": "Neovim-config",
+        "rev": "04c6ba1309a52b33ff3ee54ec6dd433330dd3d29",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ezra-1",
+        "repo": "Neovim-config",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1762596750,
@@ -138,6 +154,7 @@
         "betterfox": "betterfox",
         "home-manager": "home-manager",
         "kwin-effects-forceblur": "kwin-effects-forceblur",
+        "neovim": "neovim",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "plasma-manager": "plasma-manager",
