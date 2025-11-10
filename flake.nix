@@ -15,6 +15,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # ------------------ Neovim ------------------------
+    neovim = {
+      url = "github:ezra-1/Neovim-config";
+      flake = false;
+    };
+
     # ------------------ Better Blur -------------------
     kwin-effects-forceblur = {
       url = "github:taj-ny/kwin-effects-forceblur";
