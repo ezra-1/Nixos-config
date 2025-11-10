@@ -33,6 +33,18 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    # ------------------- Betterfox ----------------------
+    betterfox = {
+      url = "github:yokoffing/Betterfox";
+      flake = false;
+    };
+   
+    # -------------------- Zen Browser --------------------
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # ------------------------------------------------------
