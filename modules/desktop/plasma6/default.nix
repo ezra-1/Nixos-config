@@ -8,6 +8,9 @@
     enable = true;
     immutableByDefault = true;
 
+    # ------------------------------------------------------
+    # 🧭 General behavior
+    # ------------------------------------------------------
     krunner.activateWhenTypingOnDesktop = false;
 
     workspace = {
@@ -21,9 +24,12 @@
       };
       # If this file lives at modules/desktop/plasma6/default.nix,
       # adjust the relative path below to your actual wallpapers dir.
-      wallpaper = ../../themes/wallpapers/mocha-mauve.webp;
+      wallpaper = ../../themes/wallpapers/moon.webp;
     };
 
+    # ------------------------------------------------------
+    # 🎬 Window management
+    # ------------------------------------------------------
     kwin = {
       effects = {
         blur.enable = false;
@@ -41,12 +47,16 @@
         windowOpenClose.animation = "off";
         wobblyWindows.enable = false;
       };
+
       virtualDesktops = {
         number = 5;
         rows = 1;
       };
     };
 
+    # ------------------------------------------------------
+    # ⌨️ Input configuration
+    # ------------------------------------------------------
     input = {
       keyboard = {
         numlockOnStartup = "on";
@@ -54,41 +64,56 @@
         repeatRate = 35;
       };
 
-      # DO NOT try to read /proc at build time.
-      # If you really need mouse IDs, hard-code them here or omit this block.
+      # You can define mice here if needed
       # mice = [{
-      #   acceleration = 1.0;
-      #   accelerationProfile = "none";
       #   name = "Logitech USB Optical Mouse";
       #   vendorId = "046d";
       #   productId = "c077";
+      #   acceleration = 1.0;
+      #   accelerationProfile = "none";
       # }];
     };
 
+    # ------------------------------------------------------
+    # 🧊 Panel layout
+    # ------------------------------------------------------
     panels = [{
       screen = "all";
       height = 36;
+      floating = true;
       widgets = [
-        "org.kde.plasma.pager"
-        "org.kde.plasma.panelspacer"
+        # 🏠 Application launcher
         {
           name = "org.kde.plasma.kickoff";
           config.General.icon = "nix-snowflake";
         }
+
+        # 📦 Task manager launchers
         {
           iconTasks.launchers = [
-            "applications:kitty.desktop"
-            "applications:obsidian.desktop"
             "applications:org.kde.dolphin.desktop"
+            "applications:zen-beta.desktop"
+            "applications:kitty.desktop"
+            "applications:spotify.desktop"
+            "applications:code.desktop"
           ];
         }
+
+        # 🧱 Spacer between icons and system area
         "org.kde.plasma.panelspacer"
+
+        # 🧭 System tray and clock
         "org.kde.plasma.systemtray"
         "org.kde.plasma.digitalclock"
+
+        # 💨 Show desktop button
         "org.kde.plasma.showdesktop"
       ];
     }];
 
+    # ------------------------------------------------------
+    # ⚡ Power management
+    # ------------------------------------------------------
     powerdevil = {
       AC = {
         inhibitLidActionWhenExternalMonitorConnected = true;
@@ -98,18 +123,32 @@
         autoSuspend.action = "nothing";
         turnOffDisplay.idleTimeout = "never";
       };
+
       battery = {
         inhibitLidActionWhenExternalMonitorConnected = true;
         powerButtonAction = "showLogoutScreen";
         powerProfile = "balanced";
         whenLaptopLidClosed = "sleep";
-        autoSuspend = { action = "sleep"; idleTimeout = 600; };
+        autoSuspend = {
+          action = "sleep";
+          idleTimeout = 600;
+        };
         turnOffDisplay.idleTimeout = 360;
-        dimDisplay = { enable = true; idleTimeout = 120; };
+        dimDisplay = {
+          enable = true;
+          idleTimeout = 120;
+        };
       };
-      batteryLevels = { criticalLevel = 5; criticalAction = "shutDown"; };
+
+      batteryLevels = {
+        criticalLevel = 5;
+        criticalAction = "shutDown";
+      };
     };
 
+    # ------------------------------------------------------
+    # 🔒 Screen locker
+    # ------------------------------------------------------
     kscreenlocker = {
       autoLock = true;
       timeout = 5;
@@ -118,20 +157,31 @@
       lockOnResume = true;
     };
 
+    # ------------------------------------------------------
+    # 💾 Session settings
+    # ------------------------------------------------------
     session = {
       general.askForConfirmationOnLogout = false;
       sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
     };
 
+    # ------------------------------------------------------
+    # ⚙️ Miscellaneous configs
+    # ------------------------------------------------------
     configFile."baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
 
+    # ------------------------------------------------------
+    # ⌨️ Shortcuts & hotkeys
+    # ------------------------------------------------------
     shortcuts."kwin"."Cube" = "Meta+C";
+
     hotkeys.commands = {
       "launch-kitty" = {
         name = "Launch kitty";
         key = "Meta+T";
         command = "kitty";
       };
+
       "launch-firefox" = {
         name = "Launch Firefox";
         key = "Meta+F";
