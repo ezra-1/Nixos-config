@@ -15,6 +15,7 @@
     ../../modules/programs/media/discord
     ../../modules/programs/editor/vscode
     ../../modules/desktop/plasma6
+    ../../modules/programs/browser/zen
   ];
 
   # --------------------------------------------------------
@@ -36,8 +37,6 @@
     htop
     wget
     kitty
-    usbutils
-    xmodmap
     neovim
     fastfetch
     spicetify-cli
