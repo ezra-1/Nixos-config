@@ -17,6 +17,8 @@
     ../../modules/programs/editor/neovim
     ../../modules/desktop/plasma6
     ../../modules/programs/browser/zen
+    ../../modules/programs/terminal/kitty
+    ../../modules/programs/terminal/alacritty
   ];
 
   # --------------------------------------------------------
@@ -38,6 +40,7 @@
     htop
     wget
     kitty
+    alacritty
     fastfetch
     spicetify-cli
     dwt1-shell-color-scripts
