@@ -24,7 +24,7 @@
       };
       # If this file lives at modules/desktop/plasma6/default.nix,
       # adjust the relative path below to your actual wallpapers dir.
-      wallpaper = ../../themes/wallpapers/moon.webp;
+      wallpaper = ../../themes/wallpapers/Lofi-Study.png;
     };
 
     # ------------------------------------------------------
