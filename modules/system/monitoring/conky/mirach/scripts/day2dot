@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# v1.3
+# Script to display Day as Dot
+# Closebox73
+
+DATE=$(date +"%a")
+
+case "$DATE" in
+  Mon)
+    echo "      "
+    ;;
+  Tue)
+    echo "      "
+    ;;
+  Wed)
+    echo "      "
+    ;;
+  Thu)
+    echo "      "
+    ;;
+  Fri)
+    echo "      "
+    ;;
+  Sat)
+    echo "      "
+    ;;
+  Sun)
+    echo "      "
+    ;;
+  *)
+    echo "Unknown day: $DATE"
+    ;;
+esac
+
+exit 0

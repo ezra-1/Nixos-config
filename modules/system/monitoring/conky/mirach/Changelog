@@ -1,0 +1,43 @@
+Changelog
+--------------------------------------------------------
+Mirach - Conky Theme
+[ Scorpio Themes Pack ] 
+
+by Closebox73
+
+Social
+X			: https://twitter.com/closebox73
+Discord		: https://discord.com/users/1115644269802311750
+Pling		: https://pling.com/u/closebox73x
+Mastodon	: https://mastodon.social/@closebox73
+--------------------------------------------------------
+
+v2.8
+date : 05 Aug 2025
+- 	New weather.sh v4.0
+- 	New cputempf.sh v1.2
+-	New day2dot script v1.3
+- 	New number script v1.2
+- 	Adjustments to execi command usage
+- 	New rings Lua script with rounded option
+-	Added donate link
+
+
+v2.1
+date : 07 Oct 2023
+-	Add Changelog
+-	New weather.sh
+-	Add Fahrenheit version
+-	Some minor change
+
+
+v1.6
+date : 12 Oct 2022
+-	Add override_uutf8_locale line
+-	Minimize archive size
+-	Some additional line in scripts
+
+
+v1.0
+date : 10 Jul 2022
+-	Initial release

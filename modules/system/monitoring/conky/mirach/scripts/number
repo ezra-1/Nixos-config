@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# v1.2
+# Script to display ordinal suffix for the current day (1st, 2nd, 3rd, etc.)
+# Closebox73
+
+DAY=$(date +"%d" | sed 's/^0//')  # Remove leading zero (e.g., 01 → 1)
+
+SUFFIX=$(case "$DAY" in
+	1|21|31)
+		echo "st"
+		;;
+	2|22)
+		echo "nd"
+		;;
+	3|23)
+		echo "rd"
+		;;
+	*)
+		echo "th"
+		;;
+esac)
+
+echo "${SUFFIX}"
+
+exit 0
