@@ -18,7 +18,8 @@
     ../../modules/desktop/plasma6
     ../../modules/programs/browser/zen
     ../../modules/programs/terminal/kitty
-    ../../modules/programs/terminal/alacritty
+    ../../modules/programs/cli/yazi
+    ../../modules/system/monitoring/btop
   ];
 
   # --------------------------------------------------------
@@ -37,10 +38,7 @@
     git
     eza
     bat
-    htop
     wget
-    kitty
-    alacritty
     fastfetch
     spicetify-cli
     dwt1-shell-color-scripts
