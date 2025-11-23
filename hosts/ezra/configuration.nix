@@ -13,6 +13,7 @@
   # --------------------------------------------------------
   imports = [
     ./hardware-configuration.nix
+    ../../modules/scripts
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -58,6 +59,7 @@
   # --------------------------------------------------------
   programs.firefox.enable = true;
   programs.zsh.enable = true;
+  programs.steam.enable = true;
 
   # --------------------------------------------------------
   # Nix settings
